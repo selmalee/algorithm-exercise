@@ -83,7 +83,6 @@ function mergeSort(arr) {
 
 // 快速排序
 // 先确定一个“支点”（pivot），将所有小于“支点”的值都放在该点的左侧，大于“支点”的值都放在该点的右侧，然后对左右两侧不断重复这个过程，直到所有排序完成。
-// V8的sort方法就使用快速排序和插入排序的结合
 // 时间复杂度 O(nlog2n) 不稳定
 function partition(arr, i, j) {
   const pivot = arr[Math.floor((i + j) / 2)] // 支点
@@ -117,8 +116,11 @@ function quickSort(arr, left, right) {
   }
 }
 
+// 交换函数
 function swap (a, b) {
   let temp = b
   b = a
   a = temp
 }
+
+// V8的sort方法就使用快速排序和插入排序的结合
