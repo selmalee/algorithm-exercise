@@ -40,17 +40,35 @@ function selectSort(arr) {
 // 时间复杂度O(n^2) 稳定
 function insertSort(arr) {
   for (let i = 0, len = arr.length; i < len; i++) {
-    const val = arr[i]
-    for (let j = i - 1; j > -1 && arr[j] > val; j--) {
+    const temp = arr[i]
+    for (let j = i - 1; j > -1 && arr[j] > temp; j--) {
       arr[j + 1] = arr[j]
     }
-    arr[j + 1] = val
+    arr[j + 1] = temp // 找到val应该在的位置
+  }
+  return arr
+}
+
+// 希尔排序
+// 根据增量分割数组，并对每一组进行直接插入排序
+// Shell排序比冒泡排序快5倍，比插入排序大致快2倍。Shell排序比起QuickSort，MergeSort，HeapSort慢很多。但是它相对比较简单，它适合于数据量在5000以下并且速度并不是特别重要的场合。它对于数据量较小的数列重复排序是非常好的。 时间复杂度O(n^1.2)
+function shellSort(arr) {
+  let gap = Math.floor(arr.length / 2)
+  while(gap !== 0) {
+    for (let i = gap, len = arr.length; i < len; i++) {
+      const temp = arr[i]
+      for (let j = i - gap; j > -gap && arr[j] > temp; j -= gap) {
+        arr[j + gap] = arr[j]
+      }
+      arr[j + gap] = temp // 找到val应该在的位置
+    }
+    gap = Math.floor(gap / 2)
   }
   return arr
 }
 
 // 合并排序
-// 它的基本思想是，将两个已经排序的数组合并，要比从头开始排序所有元素来得快。因此，可以将数组拆开，分成n个只有一个元素的数组，然后不断地两两合并，直到全部排序完成
+// 用递归思想实现。它的基本思想是，将两个已经排序的数组合并，要比从头开始排序所有元素来得快。因此，可以将数组拆开，分成n个只有一个元素的数组，然后不断地两两合并，直到全部排序完成
 // 时间复杂度 O(nlog2n) 不稳定
 
 // 左右数组合并方法
@@ -82,7 +100,7 @@ function mergeSort(arr) {
 }
 
 // 快速排序
-// 先确定一个“支点”（pivot），将所有小于“支点”的值都放在该点的左侧，大于“支点”的值都放在该点的右侧，然后对左右两侧不断重复这个过程，直到所有排序完成。
+// 用递归思想实现。先确定一个“支点”（pivot），将所有小于“支点”的值都放在该点的左侧，大于“支点”的值都放在该点的右侧，然后对左右两侧不断重复这个过程，直到所有排序完成。
 // 时间复杂度 O(nlog2n) 不稳定
 function partition(arr, i, j) {
   const pivot = arr[Math.floor((i + j) / 2)] // 支点
@@ -107,7 +125,7 @@ function quickSort(arr, left, right) {
   }
   left = left == undefined ? 0 : left
   right = right == undefined ? arr.length - 1 : right
-  const p = partition(arr, left, right)
+  const p = partition(arr, left, right) // 返回支点所在位置
   if (left < p - 1) {
     quickSort(arr, left, p - 1)
   }
