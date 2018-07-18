@@ -101,37 +101,42 @@ function mergeSort(arr) {
 
 // 快速排序
 // 用递归思想实现。先确定一个“支点”（pivot），将所有小于“支点”的值都放在该点的左侧，大于“支点”的值都放在该点的右侧，然后对左右两侧不断重复这个过程，直到所有排序完成。
-// 时间复杂度 O(nlog2n) 不稳定
-function partition(arr, i, j) {
-  const pivot = arr[Math.floor((i + j) / 2)] // 支点
-  while (i <= j) {
-    while (arr[i] < pivot) {
-      i++
-    }
-    while (arr[j] > pivot) {
-      j--
-    }
-    if (i <= j) {
-      swap(arr[i], arr[j])
-      i++
-      j--
+// 原地排序
+function partition(arr, left, right) {
+  const pivot = arr[left] // 支点
+  let p = left
+  for (let i = left + 1; i <= right; i++) {
+    if (arr[i] < pivot) {
+      swap(arr[++p], arr[i])
     }
   }
-  return i
+  swap(pivot, p)
+  return p // 返回支点所在位置
 }
-function quickSort(arr, left, right) {
+function quickSort(arr, left = 0, right = arr.length - 1) {
   if (arr.length == 1) {
     return arr
   }
-  left = left == undefined ? 0 : left
-  right = right == undefined ? arr.length - 1 : right
-  const p = partition(arr, left, right) // 返回支点所在位置
-  if (left < p - 1) {
+  if (left < right) {
+    const p = partition(arr, left, right)
     quickSort(arr, left, p - 1)
+    quickSort(arr, p + 1, right)
   }
-  if (right > p) {
-    quickSort(arr, p, right)
+}
+// 时间复杂度 O(nlog2n) 不稳定
+function quickSortBase(arr, left, right) {
+  if (arr.length <= 1) { return arr }
+    const pivot = arr[Math.floor(arr.length / 2)]
+    const left = []
+    const right = []
+    for (var i = 0, len = arr.length; i < len; i++){
+      if (arr[i] < pivot) {
+        left.push(arr[i])
+      } else if (arr[i] > pivot) {
+        right.push(arr[i])
+    }
   }
+  return quickSort(left).concat([pivot], quickSort(right))
 }
 
 // 交换函数

@@ -6,7 +6,6 @@ function seqSearch(arr, data) {
         swap(arr[i], arr[i - 1]) // 查找到的元素向前移动一位，逐渐将经常查找的元素移到最前
         return i - 1
       }
-      return i
     }
   }
   return -1

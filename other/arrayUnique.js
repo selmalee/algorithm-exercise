@@ -1,6 +1,6 @@
 // 数组去重
 
-// 遍历数组法 时间复杂度O(n^2)
+// 遍历数组 顺序查找 时间复杂度O(n^2)
 function unique(arr) {
   let uqArr = []
   for (let i = 0, len = arr.length; i < len; i++) {
@@ -11,7 +11,7 @@ function unique(arr) {
   return uqArr
 }
 
-// 对象键值对法 js中的对象是基于哈希表结构的 时间复杂度O(n) 空间换时间
+// 对象键值对 js中的对象是基于哈希表结构的 时间复杂度O(n) 空间换时间
 function uniqueHash(arr) {
   let hash = {}
   let uqArr = []
@@ -25,7 +25,7 @@ function uniqueHash(arr) {
   }
   return uqArr
 }
-// 在上面的基础上，区分数据类型，解决如果数组的某元素是__proto__的问题
+// 在上面的基础上，区分数据类型，解决如果数组的某元素是__proto__和碰撞的问题
 function uniqueHash2(arr) {
   let hash = Object.create(null)
   let uqArr = []
