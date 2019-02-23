@@ -27,36 +27,35 @@
  * 
  * 
  */
-function checkReverse(s, i, j) {
-  if (j - i === 1) {
-    return true
-  }
-  while(j - i > 0) {
-    if (s[++i] !== s[--j]) {
-      return false
-    }
-  }
-  return true
-}
 /**
  * @param {string} s
  * @return {string}
  */
 var longestPalindrome = function(s) {
-  if (!s) {
-    return ''
+  if (s.length <= 1) {
+    return s
   }
-  const len = s.length
-  let res = ''
-  for (let i = 0; i < len; i++) {
-    for (let j = len - 1; j >= 0; j--) {
-      if (s[i] === s[j] && (j - i + 1) > res.length) {
-        const isReverse = checkReverse(s, i, j)
-        if (isReverse) {
-          res = s.substring(i, j + 1)
-        }
-      }
+  let max = 0, left = 0
+  for (let i = 0, len = s.length; i < len; i++) {
+    if(max + 1 > (len - i) * 2) {
+      break
+    }
+    let l = i, r= i
+    // 找到连续相同元素（中心），此时i为中心的最左端，r为中心的最右端
+    while(r < len - 1 && s[l] === s[r + 1]) {
+      r++
+    }
+    // 对比中心的左右
+    while(l > 0 && r < len - 1 && s[l - 1] === s[r + 1]) {
+      l--
+      r++
+    }
+    // 检查是否最长子串
+    if (r - l > max) {
+      max = r - l
+      left = l
     }
   }
-  return res ? res : s[0]
+  return s.substring(left, left + max + 1)
 };
+
