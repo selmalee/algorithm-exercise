@@ -19,25 +19,23 @@ var isValid = function(s) {
     // 遇到左括号存储到栈中，遇到右括号就从栈中取值比对
     if (item === '(' || item === '[' || item === '{') {
       stack.push(item)
-    } else if (item === ')') {
-      if (stack.pop() !== '(') {
-        return false
-      }
-    } else if (item === ']') {
-      if (stack.pop() !== '[') {
-        return false
-      }
-    } else if (item === '}') {
-      if (stack.pop() !== '{') {
-        return false
-      }
+    } else if ((item === ')' && stack.pop() !== '(') || (item === ']' && stack.pop() !== '[') || (item === '}' && stack.pop() !== '{')) {
+      return false
     }
   }
   // 如果栈中还有左括号则返回false
-  if (stack.length > 0) {
-    return false
-  }
-  return true
+  return stack.length === 0
 };
+
+// var isValid = function(s) {
+//   var st = []
+//   for(var l of s)
+//       if ((i="({[]})".indexOf(l))>-1)
+//           if (st[st.length-1]+i===5)
+//               st.length--;
+//           else
+//               st.push(i);
+//   return st.length===0
+// }
 // @lc code=end
 
