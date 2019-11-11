@@ -10,16 +10,23 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-  if (s.length === 1 || (s.length > 1 && !(/[\)\]\}]/.test(s)))) {
+  // 返回错误
+  if (s.length === 1) {
     return false
   }
-  let stack = []
+  const brackets = '({[]})'
+  let stack = [] // 存储左括号的左brackets的id
   for (let i = 0, len = s.length; i < len; i++) {
     const item = s[i]
-    // 遇到左括号存储到栈中，遇到右括号就从栈中取值比对
-    if (item === '(' || item === '[' || item === '{') {
-      stack.push(item)
-    } else if ((item === ')' && stack.pop() !== '(') || (item === ']' && stack.pop() !== '[') || (item === '}' && stack.pop() !== '{')) {
+    // 如果是不合法字符，则返回错误
+    if (brackets.indexOf(item) === -1) {
+      return false
+    }
+    // 遇到左括号把id存储到栈中，遇到右括号就从栈中取值相加，判断是否等于5（等差数列求和思想）
+    const bracketsId = brackets.indexOf(item)
+    if ('({['.indexOf(item) !== -1) {
+      stack.push(bracketsId)
+    } else if (bracketsId + stack.pop() !== 5) {
       return false
     }
   }
@@ -27,15 +34,5 @@ var isValid = function(s) {
   return stack.length === 0
 };
 
-// var isValid = function(s) {
-//   var st = []
-//   for(var l of s)
-//       if ((i="({[]})".indexOf(l))>-1)
-//           if (st[st.length-1]+i===5)
-//               st.length--;
-//           else
-//               st.push(i);
-//   return st.length===0
-// }
 // @lc code=end
 
