@@ -38,6 +38,19 @@ var strStr = function(haystack, needle) {
   // return haystack.indexOf(needle)
 };
 
+function getPartialMatchTable(str) {
+  const strLen = str.length
+  let pmt = [0]
+  if (strLen === 1) {
+    return pmt
+  }
+  let prefix = [], postfix = []
+  for (let i = 1; i < strLen;) {
+
+  }
+  return pmt
+}
+
 // BF算法，即暴风(Brute Force)算法，暴力破解
 // var strStr = function(haystack, needle) {
 //   const hLen = haystack.length;
