@@ -1,1 +1,4 @@
-用于记录leetcode练习和其他相关知识点
+ - /easy,/medium,/array leetcode 合集
+ - /offer 剑指offer
+ - /other 其他知识点
+ 
