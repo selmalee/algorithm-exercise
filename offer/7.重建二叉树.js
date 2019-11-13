@@ -16,6 +16,9 @@ function reConstructBinaryTree(pre, vin)
   const root = pre[0] // 前序遍历的第一个节点为根节点
   if (pre.length > 1) {
     const vinRootId = vin.indexOf(root)
+    if (vinRootId === -1) { // 鲁棒性
+      throw new Error('invalid input')
+    }
     const vinLeftTree = vin.slice(0, vinRootId) // 中序左子树，中序中根节点左边的是左子树
     const vinRightTree = vin.slice(vinRootId + 1) // 中序右子树，中序中根节点右边的是右子树
     pre.shift()
