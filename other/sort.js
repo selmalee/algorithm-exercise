@@ -123,6 +123,24 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     quickSort(arr, p + 1, right)
   }
 }
+
+// // 取第一个为支点，p为支点应该在的位置。p初始值为left，遇到比支点小的，p++，且与p交换位置，比它大的放跳过，最后支点与p交换位置，左右两侧重复这个过程
+// function quickSort1(arr, left = 0, right = arr.length - 1) {
+//   if (left >= right) {
+//     return arr
+//   }
+//   let p = left, pivot = left
+//   for (let i = left + 1; i < right + 1; i++) {
+//     if (arr[i] <= arr[pivot]) {
+//       p++
+//       swap(arr, p, i)
+//     }
+//   }
+//   swap(arr, p, pivot)
+//   quickSort1(arr, left, p - 1)
+//   quickSort1(arr, p + 1, right)
+//   return arr
+// }
 // 时间复杂度 O(nlog2n) 不稳定
 function quickSortBase(arr, left, right) {
   if (arr.length <= 1) { return arr }
