@@ -32,7 +32,7 @@ var removeNthFromEnd = function(head, n) {
     currentN = currentN.next
     count++
   }
-  // 如果当前节点+n不存在，即删除的是头节点
+  // 如果当前节点+n已经到了链表末尾的下一个节点，当前节点就是倒数第n个节点。即删除头节点。
   if (!currentN) {
     return head.next
   }
