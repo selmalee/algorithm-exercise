@@ -11,7 +11,7 @@ function duplicate(numbers) {
   let end = numbers.length - 2 
   while(start <= end) {
     const mid = Math.floor((start + end) / 2)
-    if (countRage(numbers, start, mid) > mid - start + 1) {
+    if (countRange(numbers, start, mid) > mid - start + 1) {
       if (start === end) {
         return numbers[start]
       }
@@ -23,7 +23,7 @@ function duplicate(numbers) {
   return -1
 }
 
-function countRage(arr, start, end) {
+function countRange(arr, start, end) {
   let count = 0
   for (let i = 0, len = arr.length; i < len; i++) {
     if (arr[i] >= start && arr[i] <= end) {
