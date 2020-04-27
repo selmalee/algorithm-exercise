@@ -11,7 +11,7 @@ function FindGreatestSumOfSubArray(array) {
   let count = 0
   let max = array[0] // 最大值
   for (let i = 0, len = array.length; i < len; i++) {
-    // 如果和小于等于0，则当前值可能为最大值，从当前值开始重新计算
+    // 如果count + array[i] <= array[i]，即count <= 0，则当前值可能为最大值，从当前值开始重新计算
     if (count <= 0) {
       count = array[i]
     } else {

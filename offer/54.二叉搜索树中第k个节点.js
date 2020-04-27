@@ -6,35 +6,36 @@ function KthNode(pRoot, k) {
     return null
   }
   let count = 0
-  function core(pRoot, k) {
+  function KthNodeCore(pRoot, k) {
     let target = null
-    if (pRoot.left) {
-      target = core(pRoot.left, k)
+    if (!pRoot) {
+      return target
     }
+    target = KthNodeCore(pRoot.left, k)
     count++
     if (count === k) {
       target = pRoot
     }
-    if (target === null && pRoot.right) {
-      target = core(pRoot.right, k)
+    if (target === null) {
+      target = KthNodeCore(pRoot.right, k)
     }
     return target
   }
-  return core(pRoot, k)
+  return KthNodeCore(pRoot, k)
 }
 
-// function TreeNode(x) {
-//   this.val = x;
-//   this.left = null;
-//   this.right = null;
-// }
-// let tree = new TreeNode(5)
-// tree.left = new TreeNode(3)
-// tree.right = new TreeNode(7)
-// tree.left.left = new TreeNode(2)
-// tree.left.right = new TreeNode(4)
-// tree.right.left = new TreeNode(6)
-// tree.right.right = new TreeNode(8)
-// console.log(tree)
+function TreeNode(x) {
+  this.val = x;
+  this.left = null;
+  this.right = null;
+}
+let tree = new TreeNode(5)
+tree.left = new TreeNode(3)
+tree.right = new TreeNode(7)
+tree.left.left = new TreeNode(2)
+tree.left.right = new TreeNode(4)
+tree.right.left = new TreeNode(6)
+tree.right.right = new TreeNode(8)
+console.log(tree)
 
-// console.log(KthNode(tree, 3))
+console.log(KthNode(tree, 3))
