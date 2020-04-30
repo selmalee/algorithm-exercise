@@ -51,7 +51,8 @@ function insertSort(arr) {
 
 // 希尔排序
 // 根据增量分割数组，并对每一组进行直接插入排序
-// Shell排序比冒泡排序快5倍，比插入排序大致快2倍。Shell排序比起QuickSort，MergeSort，HeapSort慢很多。但是它相对比较简单，它适合于数据量在5000以下并且速度并不是特别重要的场合。它对于数据量较小的数列重复排序是非常好的。 时间复杂度O(n^1.2)
+// Shell排序比冒泡排序快5倍，比插入排序大致快2倍。Shell排序比起QuickSort，MergeSort，HeapSort慢很多。但是它相对比较简单，它适合于数据量在5000以下并且速度并不是特别重要的场合。它对于数据量较小的数列重复排序是非常好的。
+// 时间复杂度O(n^1.2)。不稳定。
 function shellSort(arr) {
   let gap = Math.floor(arr.length / 2)
   while(gap !== 0) {
@@ -142,7 +143,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 //   return arr
 // }
 // 时间复杂度 O(nlog2n) 不稳定
-function quickSortBase(arr, left, right) {
+function quickSortBase(arr) {
   if (arr.length <= 1) { return arr }
     const pivot = arr[Math.floor(arr.length / 2)]
     const left = []

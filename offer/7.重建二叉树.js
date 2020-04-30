@@ -8,7 +8,8 @@ function TreeNode(x) {
 }
 // 前序遍历：根->左->右
 // 中序遍历：左->根->右
-
+// 后序遍历：左->右->根
+// 重点在于找到根节点
 function reConstructBinaryTree(pre, vin)
 {
   if (pre.length === 0) {
@@ -23,6 +24,7 @@ function reConstructBinaryTree(pre, vin)
     const vinLeftTree = vin.slice(0, vinRootId) // 中序左子树，中序中根节点左边的是左子树
     const vinRightTree = vin.slice(vinRootId + 1) // 中序右子树，中序中根节点右边的是右子树
     pre.shift()
+    // 使用前序的左子树、右子树。接下来要用到前序识别出根节点
     const preLeftTree = pre.slice(0, vinLeftTree.length) // 前序左子树
     const preRightTree = pre.slice(vinLeftTree.length) // 前序右子树
     // 递归，返回节点

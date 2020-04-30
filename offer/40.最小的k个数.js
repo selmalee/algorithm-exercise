@@ -31,17 +31,17 @@ function partition(array, start, end) {
     return start
   }
   const pivot = array[start] // 或者随机数或中间数
-  let p = start + 1
-  for (let i = p; i <= end; i++) {
+  let p = start
+  for (let i = start + 1; i <= end; i++) {
     // 如果比它小，互换位置，p指针指向下一个
     if (array[i] < pivot) {
+      p++
       if (p !== i) {
         swap(array, p, i)
       }
-      p++
     }
   }
-  swap(array, start, p - 1)
+  swap(array, start, p)
   return p
 }
 

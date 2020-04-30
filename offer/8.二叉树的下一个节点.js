@@ -6,7 +6,7 @@
     this.val = x;
     this.left = null;
     this.right = null;
-    this.next = null;
+    this.next = null; // 父节点
 }*/
 function GetNext(pNode)
 {

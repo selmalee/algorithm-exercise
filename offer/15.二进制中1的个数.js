@@ -5,7 +5,8 @@
 function NumberOf1(n) {
   let count = 0
   let flag = 1
-  while(flag) {
+  while(flag && flag <= n) {
+    console.log(flag)
     if (n & flag) { // 按位与，都等于1时为1
       count++
     }
@@ -13,7 +14,6 @@ function NumberOf1(n) {
   }
   return count
 }
-
 // 方案二：根据一个规律：把一个整数减去1，再和原整数按位与，会把该整数最右边的1变成0，那么一个整数里有多少个1就可以做多少次这样的操作
 // function NumberOf1(n) {
 //   let count = 0

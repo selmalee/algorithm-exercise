@@ -32,7 +32,7 @@ function uniqueHash2(arr) {
   let item
   for (let i = 0, len = arr.length; i < len; i++) {
     item = arr[i]
-    if(!hash[item]) {
+    if(!hash[item][typeof item]) {
       hash[item][typeof item] = true
       uqArr.push(item)
     }

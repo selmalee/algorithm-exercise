@@ -32,10 +32,8 @@ function FindPathCore(root, expectNumber, stack, sum, result) {
     FindPathCore(root.right, expectNumber, stack, sum, result)
   }
   // 到达叶子结点，判断路径之和是否等于expectNumber
-  if (root.left === null && root.right === null) {
-    if (sum === expectNumber) {
-      result.push(stack.concat([]))
-    }
+  if (root.left === null && root.right === null && sum === expectNumber) {
+    result.push(stack.concat([]))
   }
   stack.pop() // 回到父节点前，出栈当前节点（因为数组是引用数据类型，回到父节点时stack已被改变）
 }
