@@ -14,7 +14,7 @@ function duplicate(numbers) {
     const mid = Math.floor((start + end) / 2)
     if (countRange(numbers, start, mid) > mid - start + 1) {
       if (start === end) {
-        return numbers[start]
+        return start
       }
       end = mid
     } else {
@@ -34,4 +34,4 @@ function countRange(arr, start, end) {
   return count
 }
 
-console.log(duplicate([0,1,4,1,1,5,6,6], []))
+console.log(duplicate([0,1,4,2,3,4,5,6]))

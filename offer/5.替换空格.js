@@ -28,3 +28,5 @@ function replaceSpace(str)
   str = arr.join('') // 再转换为字符串
   return str
 }
+
+console.log(replaceSpace('We Are Happy'))

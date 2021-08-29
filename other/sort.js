@@ -100,15 +100,39 @@ function mergeSort(arr) {
   return arr
 }
 
-// 快速排序
+// 快速排序，时间复杂度O(nlog2n)
 // 用递归思想实现。先确定一个“支点”（pivot），将所有小于“支点”的值都放在该点的左侧，大于“支点”的值都放在该点的右侧，然后对左右两侧不断重复这个过程，直到所有排序完成。
-// 原地排序
+
+// 方案一：空间复杂度较大O(nlog2n)
+// function quickSort(arr) {
+//   if (arr.length < 2) {
+//     return arr;
+//   }
+//   const mid = Math.floor(arr.length / 2);
+//   const leftArr = [];
+//   const rightArr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (i === mid) {
+//       continue;
+//     }
+//     if (arr[i] < arr[mid]) {
+//       leftArr.push(arr[i]);
+//     } else {
+//       rightArr.push(arr[i]);
+//     }
+//   }
+//   return quickSort(leftArr).concat(arr[mid]).concat(quickSort(rightArr));
+// }
+// 方案二：原地排序
 function partition(arr, left, right) {
   const pivot = arr[left] // 支点
   let p = left
   for (let i = left + 1; i <= right; i++) {
     if (arr[i] < pivot) {
-      swap(arr[++p], arr[i])
+      p++
+      if (i !== p) {
+        swap(arr[p], arr[i])
+      }
     }
   }
   swap(pivot, p)
@@ -124,6 +148,9 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     quickSort(arr, p + 1, right)
   }
 }
+
+// const arr = [85, 24, 63, 45, 17, 31, 96, 50];
+// quickSort(arr)
 
 // // 取第一个为支点，p为支点应该在的位置。p初始值为left，遇到比支点小的，p++，且与p交换位置，比它大的放跳过，最后支点与p交换位置，左右两侧重复这个过程
 // function quickSort1(arr, left = 0, right = arr.length - 1) {

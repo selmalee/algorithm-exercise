@@ -41,3 +41,5 @@ function reConstructBinaryTree(pre, vin)
     }
   }
 }
+
+console.log(reConstructBinaryTree([1,2,4,7,3,5,6,8], [4,7,2,1,5,3,8,6]))

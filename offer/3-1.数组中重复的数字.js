@@ -4,7 +4,7 @@
 //函数返回True/False
 
 function duplicate(numbers, duplication) {
-  if (!numbers || numbers.length === 0 ||numbers.filter(item => item < 0 || item > numbers.length - 1).length > 0) {
+  if (!numbers) {
     return false
   }
   //函数返回True/False
@@ -22,11 +22,15 @@ function duplicate(numbers, duplication) {
 
   // 2. 利用数组特性，时间复杂度O(n)，空间复杂度O(1)
   for (let i = 0, len = numbers.length; i < len; i++) {
+    if (numbers[i] < 0 || numbers[i] > len - 1) {
+      return false;
+    }
     // 使得numbers[i] = i，当已存在numbers[numbers[i]] = numbers[i]时，则为重复项
     while (numbers[i] !== i) {
       const targetI = numbers[i]
       if (numbers[targetI] === targetI) {
         duplication[0] = targetI
+        console.log('duplication[0] =', duplication[0])
         return true
       }
       // i 与 numbers[i]互换位置
