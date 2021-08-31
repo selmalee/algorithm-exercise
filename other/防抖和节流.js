@@ -22,7 +22,6 @@ function debounce(fn, delay) {
 // test
 var count = 0;
 function testDebounce(content, now) {
-  count = 0;
   console.log(content, now);
 }
 var testDebounceFn = debounce(testDebounce, 1000); // 防抖函数
@@ -50,7 +49,6 @@ function throttle(fn, delay) {
 // test
 var count = 0;
 function testThrottle(content, now) {
-  count = 0;
   console.log(content, now);
 }
 var testThrottleFn = throttle(testThrottle, 1000); // 节流函数
