@@ -5,14 +5,14 @@
 
 // 方案一：动态规划思想。因为求问题的最优解是由若干个小问题组成的，而且这些小问题之间还有重叠的情况，所以自下而上地计算小问题的最优解并存储下来，最终得到大问题的最优解。
 // function cutRope(number) {
-//   if (number < 2) {
+//   if (!number) {
 //     return 0
-//   } else if (number === 2) {
+//   } else if (number === 2 || number === 1) {
 //     return 1
 //   } else if (number === 3) {
 //     return 2
 //   }
-//   let maxes = [0, 1, 2, 3] // 存储子问题的最优解
+//   let maxes = [0, 1, 1, 2] // 存储子问题的最优解
 //   // i > 4时，f(i) = f(j) * f(i - j)
 //   for (let i = 4; i <= number; i++) { // i递增，自下而上
 //     let max = 0
