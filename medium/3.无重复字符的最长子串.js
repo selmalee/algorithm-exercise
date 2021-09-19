@@ -17,14 +17,16 @@ var lengthOfLongestSubstring = function(s) {
   }
   // 遍历，计算连续子串
   for (let i = 0, len = s.length; i < len; i++) {
-    if (subS.indexOf(s[i]) === -1) {
-      subS += s[i]
+    const item = s[i];
+    const id = subS.indexOf(item);
+    if (id === -1) {
       // 计算最长连续子串长度
+      subS += item;
       maxCount = subS.length > maxCount ? subS.length : maxCount
     } else {
       // 如果有重复的字符，回溯到重复的字符首次出现的索引+1，重新计算
-      subS = subS.substring(subS.indexOf(s[i]) + 1)
-      subS += s[i]
+      subS = subS.substring(id + 1);
+      subS += item;
     }
   }
   return maxCount
