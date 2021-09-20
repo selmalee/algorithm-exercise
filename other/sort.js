@@ -9,7 +9,7 @@ function bubbleSort(arr) {
   for (let i = 0, len = arr.length; i < len; i++) {
     for (let j = 0, stop = len - 1 - i; j < stop; j++) {
       if (arr[j] > arr[j + 1]) {
-        swap(arr[j], arr[j + 1])
+        swap(arr, j, j + 1)
       }
     }
   }
@@ -29,7 +29,7 @@ function selectSort(arr) {
         min = j
       }
     }
-    swap(arr[i], arr[min])
+    swap(arr, i, min)
   }
 
   return arr
@@ -131,11 +131,11 @@ function partition(arr, left, right) {
     if (arr[i] < pivot) {
       p++
       if (i !== p) {
-        swap(arr[p], arr[i])
+        swap(arr, p, i)
       }
     }
   }
-  swap(pivot, p)
+  swap(arr, left, p)
   return p // 返回支点所在位置
 }
 function quickSort(arr, left = 0, right = arr.length - 1) {
@@ -147,10 +147,11 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     quickSort(arr, left, p - 1)
     quickSort(arr, p + 1, right)
   }
+  return arr;
 }
 
-// const arr = [85, 24, 63, 45, 17, 31, 96, 50];
-// quickSort(arr)
+const arr = [85, 24, 63, 45, 17, 31, 96, 50];
+console.log(quickSort(arr))
 
 // // 取第一个为支点，p为支点应该在的位置。p初始值为left，遇到比支点小的，p++，且与p交换位置，比它大的放跳过，最后支点与p交换位置，左右两侧重复这个过程
 // function quickSort1(arr, left = 0, right = arr.length - 1) {
@@ -186,10 +187,11 @@ function quickSortBase(arr) {
 }
 
 // 交换函数
-function swap (a, b) {
-  let temp = b
-  b = a
-  a = temp
+function swap(nums, a, b) {
+  const temp = nums[a];
+  nums[a] = nums[b];
+  nums[b] = temp;
+  // console.log('swap', nums[a], nums[b])
 }
 
 // V8的sort方法就使用快速排序和插入排序的结合

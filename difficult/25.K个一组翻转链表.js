@@ -20,34 +20,41 @@
  * @return {ListNode}
  */
 var reverseKGroup = function(head, k) {
-  let pNode = head;
   let pHead = head; // 要翻转的链表的头
-  let i = 0;
-  while (pNode) {
-    const pNext = pNode.next;
-    i++;
-    // 翻转一段链表
-    if (i === k) {
-      reverse(pHead, pNode);
-      pHead = pNext; // 设置下一段要翻转的链表的头
-      pHead.next = pNode; // 连接上一段的尾
-      i = 0;
+  let pNextHead = head; // 当前节点
+  let newHead = head; // 结果链表的头
+  for (let i = 0; i < k; i++) {
+    // 不足k个，不需要反转
+    if (!pNextHead) {
+      return head;
     }
-    pNode = pNode.next;
+    pNextHead = pNextHead.next;
   }
-  return head;
+  if (k > 1) {
+    // 反转k个元素
+    newHead = reverse(pHead, pNextHead);
+    // 递归，并连接下一个反转链表
+    pHead.next = reverseKGroup(pNextHead, k);
+  }
+  return newHead;
 };
 
-var reverse = function(head, tail) {
-  let pPre = null;
+/**
+ * @param {ListNode} head 要翻转的链表头
+ * @param {ListNode} pNextHead 下一个要翻转的链表头
+ * @return {*} 
+ */
+var reverse = function(head, pNextHead) {
   let pNode = head;
-  while(pNode !== tail) {
+  let pPre = null;
+  while(pNode !== pNextHead) {
     const pNext = pNode.next;
     pNode.next = pPre;
     pPre = pNode;
     pNode = pNext;
   }
-  return head;
+  // console.log('reverse', pPre)
+  return pPre;
 }
 
 const list = {
@@ -57,13 +64,13 @@ const list = {
     next: {
       val: 3,
       next: {
-        val: 3,
+        val: 4,
         next: {
-          val: 4,
+          val: 5,
           next: {
-            val: 4,
+            val: 6,
             next: {
-              val: 5,
+              val: 7,
               next: null
             }
           }
@@ -72,4 +79,4 @@ const list = {
     }
   }
 }
-console.dir(reverseKGroup(list),{depth:null});
+console.dir(reverseKGroup(list, 1),{depth:null});
